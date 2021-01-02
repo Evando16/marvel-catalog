@@ -1,0 +1,13 @@
+- Requisitos necessários:
+- [1]Página de listagem dos quadrinhos (com a seguinte rota: /comics)
+- [2]Paginação dos itens
+- [3]Ao clicar em um item, exibir detalhes
+- [4]Página de listagem dos personagens (com a seguinte rota: /characters)
+- [5]Paginação dos itens
+- [6]Pesquisa por nome do personagem
+
+
+-----------------------------------------------
+* Check how to create private enviroments on GitHub
+    -- https://github.com/Evando16/marvel-catalog/settings/secrets/actions
+- Check a way to remove unnecessary prop when request data
