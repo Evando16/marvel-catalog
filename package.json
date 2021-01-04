@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start:hmr": "ng serve --hmr --configuration=dev",
+    "start:hmr": "ng serve --hmr=true --configuration=local",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test --code-coverage",
