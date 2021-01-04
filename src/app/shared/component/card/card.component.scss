@@ -1,0 +1,11 @@
+.marvel-card {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    max-width: 30%;
+    padding: 16px;
+
+    img {
+        max-width: 20%;
+    }
+}

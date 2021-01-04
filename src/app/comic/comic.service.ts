@@ -1,5 +1,5 @@
 import { DataWrapper } from './../shared/interface/data-wrapper.model';
-import { ComicRequest } from './comic.model';
+import { ComicRequest, Character } from './comic.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,7 +21,14 @@ export class ComicService {
           return {
             ...hpptResultItem.data,
             results: hpptResultItem.data.results.map(item => {
-              return { id: item.id, title: item.title };
+              return {
+                id: item.id,
+                title: item.title,
+                description: item.description,
+                thumbnail: item.thumbnail,
+                creators: item.creators,
+                characters: item.characters
+              };
             })
           }
         })

@@ -8,6 +8,9 @@
 
 
 -----------------------------------------------
-* Check how to create private enviroments on GitHub
+* Check how to create private enviroments on GitHub (done with heroku)
     -- https://github.com/Evando16/marvel-catalog/settings/secrets/actions
-- Check a way to remove unnecessary prop when request data
+- Check a way to remove unnecessary prop when request data (done)
+* Check best way to "interpret" HTML received by API
+    - There is a xss problem with the innerHTML prop
+* Create @mixin to style the place-content css prop

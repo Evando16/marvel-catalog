@@ -5,8 +5,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-comic-list',
   template: `
-  <p>comic-list works!</p>
-  <div *ngFor="let item of comics"> {{item | json}}</div>
+  <marvel-card></marvel-card>
+  <!-- <div *ngFor="let item of comics"> {{item | json}}</div> -->
   `,
   styleUrls: ['./comic-list.component.scss']
 })
@@ -16,10 +16,9 @@ export class ComicListComponent implements OnInit {
   constructor(private readonly comicService: ComicService) { }
 
   public ngOnInit(): void {
-    this.comicService.getComics().subscribe((data: ComicRequest) => {
-      debugger
-      this.comics = data.results
-    });
+    // this.comicService.getComics().subscribe((data: ComicRequest) => {
+    //   this.comics = data.results
+    // });
   }
 
 }
