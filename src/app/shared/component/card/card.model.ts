@@ -1,11 +1,11 @@
 import { CardDetailType } from './card-detail-type.enum';
-import { Image } from './../../interface/image.model';
 
 export interface Card {
     id: number;
     title: string;
+    shortDescription?: string;
     description?: string;
-    thumbnail?: Image;
+    thumbnailUrl?: string;
     author?: Author[];
     detail?: Detail[];
 }

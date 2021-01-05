@@ -13,8 +13,8 @@ export interface Comic {
     title: string;
     description: string;
     thumbnail: Image;
-    creators: CreatorList[];
-    characters: CharacterList[];
+    creators: CreatorList;
+    characters: CharacterList;
 }
 
 export interface CreatorList {

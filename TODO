@@ -14,3 +14,4 @@
 * Check best way to "interpret" HTML received by API
     - There is a xss problem with the innerHTML prop
 * Create @mixin to style the place-content css prop
+* Check a way to put ellipsis with flex layout to be used on description
