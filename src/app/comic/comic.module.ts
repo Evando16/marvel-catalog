@@ -1,3 +1,5 @@
+import { PaginatorModule } from './../shared/component/paginator/paginator.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,7 +13,8 @@ import { CardModule } from './../shared/component/card/card.module';
   imports: [
     CommonModule,
     ComicRoutingModule,
-    CardModule
+    CardModule,
+    PaginatorModule
   ]
 })
 export class ComicModule { }

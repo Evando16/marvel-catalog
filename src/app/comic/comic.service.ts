@@ -1,6 +1,6 @@
 import { DataWrapper } from './../shared/interface/data-wrapper.model';
 import { ComicRequest, Comic } from './comic.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -14,8 +14,10 @@ export class ComicService {
 
   constructor(private readonly httpClient: HttpClient) { }
 
-  public getComics(): Observable<ComicRequest> {
-    return this.httpClient.get<DataWrapper<ComicRequest>>(MARVEL_COMICS_ROUTE)
+  public getComics(offset: number, limit: number): Observable<ComicRequest> {
+    const params = new HttpParams({ fromObject: { offset: offset.toString(), limit: limit.toString() } });
+
+    return this.httpClient.get<DataWrapper<ComicRequest>>(MARVEL_COMICS_ROUTE, { params })
       .pipe(
         map(hpptResultItem => {
           return {

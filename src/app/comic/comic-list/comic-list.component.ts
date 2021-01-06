@@ -1,3 +1,4 @@
+import { PAGINATOR_OPTIONS } from './../comic.constant';
 import { Component, OnInit } from '@angular/core';
 
 import { Card, Author, Detail } from './../../shared/component/card/card.model';
@@ -5,11 +6,13 @@ import { Image } from './../../shared/interface/image.model';
 import { Comic, ComicRequest, Creator, CreatorList, CharacterList, Character } from './../comic.model';
 import { CardDetailType } from 'src/app/shared/component/card/card-detail-type.enum';
 import { ComicService } from './../comic.service';
+import { MarvelPaginator } from './../../shared/component/paginator/paginator.model';
 
 @Component({
   selector: 'app-comic-list',
   template: `
   <section class="comic-list">
+    <marvel-paginator (onChange)="onChangePage($event)" [itemsPerPageOptions]="paginatorOptions" [total]="totalComicCards"></marvel-paginator>
     <div class="comic-list__card-container">
       <marvel-card class="comic-list__card" *ngFor="let card of comicCard" [card]="card"></marvel-card>
     </div>
@@ -20,14 +23,19 @@ import { ComicService } from './../comic.service';
 })
 export class ComicListComponent implements OnInit {
   public comicCard: Card[] = [];
+  public totalComicCards!: number;
+  public paginatorOptions = PAGINATOR_OPTIONS;
 
 
   constructor(private readonly comicService: ComicService) { }
 
   public ngOnInit(): void {
-    this.comicService.getComics().subscribe((data: ComicRequest) => {
-      this.comicCard = this.createCardList(data.results)
-    });
+    this.requestComics(0, +PAGINATOR_OPTIONS[0].value);
+  }
+
+  public onChangePage(action: MarvelPaginator): void {
+    const offset = action.itemsPerPage * action.page;
+    this.requestComics(offset, action.itemsPerPage);
   }
 
   private createCardList(result: Comic[]): Card[] {
@@ -69,5 +77,12 @@ export class ComicListComponent implements OnInit {
     }
 
     return description;
+  }
+
+  private requestComics(offset: number, limit: number): void {
+    this.comicService.getComics(offset, limit).subscribe((data: ComicRequest) => {
+      this.totalComicCards = data.total;
+      this.comicCard = this.createCardList(data.results)
+    });
   }
 }
