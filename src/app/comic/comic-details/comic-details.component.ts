@@ -8,7 +8,7 @@ import { ComicService } from './../comic.service';
 import { ComicDetails } from '../comic.model';
 
 @Component({
-  selector: 'marvel-comic-details',
+  selector: 'app-marvel-comic-details',
   template: `
     <section *ngIf="!!comic" class="marvel-comic-details">
       <div class="marvel-comic-details__container">
@@ -24,13 +24,16 @@ import { ComicDetails } from '../comic.model';
 
         <b>STAFF</b>
         <div class="marvel-comic-details__comic-staff mb-24">
-          <div *ngFor="let item of staff">
-            <p class="marvel-comic-details__comic-staff--role">{{item.roleName}}</p>
+          <div *ngFor="let item of staff" class="marvel-comic-details__staff-group">
+            <p class="marvel-comic-details__role">{{item.roleName}}</p>
             <span *ngFor="let creatorName of item.creator; index as index">
               {{creatorName}}
               <span *ngIf="index !== item.creator.length - 1" class="mr-8">,</span>
             </span>
           </div>
+          <p *ngIf="staff.length === 0">
+            No Staff registred for this comic
+          </p>
         </div>
 
         <b>CHARACTERS</b>
@@ -41,6 +44,9 @@ import { ComicDetails } from '../comic.model';
               <span *ngIf="index !== comic.characters.length - 1" class="mr-8">,</span>
             </span>
           </div>
+          <p *ngIf="comic.characters.length === 0">
+            No Characters registred for this comic
+          </p>
         </div>
       </div>
     </section>
@@ -59,7 +65,7 @@ export class ComicDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.comicService.getComicById(+params['id']).subscribe((result: DataWrapper<ComicDetails>) => {
+      this.comicService.getComicById(+params.id).subscribe((result: DataWrapper<ComicDetails>) => {
         this.comic = result.data.results[0];
         this.thumbnailURL = ImageUtils.getComicThumbnailUrl(this.comic.thumbnail);
         this.staff = this.getComicStaff(this.comic.creators);
@@ -69,11 +75,11 @@ export class ComicDetailsComponent implements OnInit {
 
   private getComicStaff(creators: Creator[]): ComicDetailsStaff[] {
     const uniqueRoles: string[] = [];
-    const newStaffValue: ComicDetailsStaff[] = []
+    const newStaffValue: ComicDetailsStaff[] = [];
 
     creators.forEach((creator: Creator) => {
       if (!uniqueRoles.includes(creator.role)) {
-        const role = creator.role.toUpperCase()
+        const role = creator.role.toUpperCase();
         uniqueRoles.push(creator.role);
 
         newStaffValue.push({
@@ -84,7 +90,6 @@ export class ComicDetailsComponent implements OnInit {
     });
 
     return newStaffValue;
-
   }
 
 }

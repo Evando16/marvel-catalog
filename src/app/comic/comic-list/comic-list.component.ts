@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
   selector: 'app-comic-list',
   template: `
   <section class="comic-list">
-    <marvel-paginator (onChange)="onChangePage($event)" [itemsPerPageOptions]="paginatorOptions" [total]="totalComicCards"></marvel-paginator>
+    <app-marvel-paginator (paginatorChange)="onChangePage($event)" [itemsPerPageOptions]="paginatorOptions" [total]="totalComicCards"></app-marvel-paginator>
     <div class="comic-list__card-container">
-      <marvel-card class="comic-list__card" *ngFor="let card of comicCard" [card]="card" (click)="goToComicDetails(card.id)"></marvel-card>
+      <app-marvel-card class="comic-list__card" *ngFor="let card of comicCard" [card]="card" (click)="goToComicDetails(card.id)"></app-marvel-card>
     </div>
   </section>
   `,
@@ -48,14 +48,14 @@ export class ComicListComponent implements OnInit {
         id: comic.id,
         title: comic.title,
         thumbnailUrl: ImageUtils.getComicThumbnailUrl(comic.thumbnail)
-      }
+      };
     });
   }
-  
+
   private requestComics(offset: number, limit: number): void {
     this.comicService.getComics(offset, limit).subscribe((result: DataWrapper<ComicListItem>) => {
       this.totalComicCards = result.data.total;
-      this.comicCard = this.createCardList(result.data.results)
+      this.comicCard = this.createCardList(result.data.results);
     });
   }
 }

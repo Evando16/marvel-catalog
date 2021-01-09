@@ -20,18 +20,23 @@
   &__comic-staff {
     display: flex;
     flex-direction: row;
-    place-content: start space-between;
     font-size: 12px;
+    flex-wrap: wrap;
+  }
 
-    &--role {
-      font-weight: 600;
-    }
+  &__role {
+    font-weight: 600;
   }
 
   &__comic-characters {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     font-size: 12px;
     margin-top: 12px;
+  }
+
+  .marvel-comic-details__comic-staff > .marvel-comic-details__staff-group:not(:last-child) {
+    margin-right: 5%;
   }
 }
