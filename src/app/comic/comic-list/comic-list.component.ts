@@ -27,14 +27,17 @@ export class ComicListComponent implements OnInit {
   public paginatorOptions = PAGINATOR_OPTIONS;
 
 
-  constructor(private readonly comicService: ComicService, private readonly router: Router) { }
+  constructor(
+    private readonly comicService: ComicService,
+    private readonly router: Router
+  ) { }
 
   public ngOnInit(): void {
     this.requestComics(0, +PAGINATOR_OPTIONS[0].value);
   }
 
   public onChangePage(action: MarvelPaginator): void {
-    const offset = action.itemsPerPage * action.page;
+    const offset = action.itemsPerPage * (action.page - 1);
     this.requestComics(offset, action.itemsPerPage);
   }
 

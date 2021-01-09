@@ -15,7 +15,13 @@ export class ComicService {
   constructor(private readonly httpClient: HttpClient) { }
 
   public getComics(offset: number, limit: number): Observable<DataWrapper<ComicListItem>> {
-    const params = new HttpParams({ fromObject: { offset: offset.toString(), limit: limit.toString() } });
+    const params = new HttpParams({
+      fromObject: {
+        offset: offset.toString(),
+        limit: limit.toString(),
+        orderBy: 'title'
+      }
+    });
 
     return this.httpClient.get<DataWrapper<ComicListItem>>(MARVEL_COMICS_ROUTE, { params })
       .pipe(
