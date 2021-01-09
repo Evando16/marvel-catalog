@@ -3,7 +3,7 @@ import { MarvelSelectFieldOption } from './select-field.model';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'marvel-select-field',
+  selector: 'app-marvel-select-field',
   template: `
     <div class="marvel-select-field">
       <label [for]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">{{label}}</label>
@@ -20,7 +20,7 @@ export class SelectFieldComponent implements OnInit, OnDestroy {
 
   @Input() public options!: MarvelSelectFieldOption[];
   @Input() public label!: string;
-  @Output() public onChange: EventEmitter<string> = new EventEmitter();
+  @Output() public selectChange: EventEmitter<string> = new EventEmitter();
   public selectValue!: string;
 
   constructor(public readonly selectFieldService: SelectFieldService) { }
@@ -35,6 +35,6 @@ export class SelectFieldComponent implements OnInit, OnDestroy {
   }
 
   public onChangeSelect(): void {
-    this.onChange.emit(this.selectValue);
+    this.selectChange.emit(this.selectValue);
   }
 }

@@ -29,10 +29,10 @@ export class ComicService {
                   id: comic.id,
                   title: comic.title,
                   thumbnail: comic.thumbnail
-                }
+                };
               })
             }
-          }
+          };
         }));
   }
 
@@ -52,10 +52,10 @@ export class ComicService {
                   thumbnail: comic.thumbnail,
                   creators: this.mapComicCreators(comic.creators),
                   characters: this.mapComicCharacters(comic.characters),
-                }
+                };
               })
             }
-          }
+          };
         })
       );
   }

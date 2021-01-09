@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SelectFieldService {
-  private selectFieldCount: number = 0;
+  private selectFieldCount = 0;
 
   public addSelectField(): void {
     this.selectFieldCount++;
