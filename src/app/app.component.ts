@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-root',
+  selector: 'marvel-root',
   template: `
-    API Key: {{apiKey}}
+    <section class="marvel-app pl-40 pr-40">
+      <div class="marvel-app__menu mb-16">
+        <a [routerLink]="['/']" class="mr-16">Home</a><br>
+        <a [routerLink]="['/comics']">Comics</a>
+      </div>
+      <router-outlet></router-outlet>
+    </section>
   `,
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  apiKey = environment.marvelPublicKey
 }

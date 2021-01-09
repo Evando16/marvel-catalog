@@ -1,0 +1,37 @@
+.marvel-comic-details {
+  display: flex;
+  place-content: start center;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    max-width: 65%;
+  }
+
+  &__comic-header {
+    display: flex;
+    flex-direction: row;
+
+    &--subtitle {
+      font-size: 14px;
+    }
+  }
+
+  &__comic-staff {
+    display: flex;
+    flex-direction: row;
+    place-content: start space-between;
+    font-size: 12px;
+
+    &--role {
+      font-weight: 600;
+    }
+  }
+
+  &__comic-characters {
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}

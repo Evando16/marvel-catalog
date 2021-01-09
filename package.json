@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start:hmr": "ng serve --hmr=true --configuration=local",
     "start": "node server.js",
     "build": "ng build",
-    "test": "ng test",
+    "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "heroku-postbuild": "node envConfig.js && ng build --prod"
