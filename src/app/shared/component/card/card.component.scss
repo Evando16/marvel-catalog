@@ -5,24 +5,6 @@
   flex-direction: column;
   border-radius: 4px;
   width: 100%;
-
-  &__header {
-    display: flex;
-    flex-direction: column;
-
-    &--title {
-      font-weight: 500;
-      font-size: 14px;
-    }
-
-    &--sub-title {
-      font-weight: 400;
-      font-size: 12px;
-    }
-  }
-
-  &__content {
-    font-weight: 400;
-    font-size: 12px;
-  }
+  font-weight: 500;
+  font-size: 14px;
 }

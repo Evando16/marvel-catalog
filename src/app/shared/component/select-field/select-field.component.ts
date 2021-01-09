@@ -8,8 +8,8 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
     <div class="marvel-select-field">
       <label [for]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">{{label}}</label>
       <select class="marvel-select-field__select" [(ngModel)]="selectValue" (change)="onChangeSelect()"
-        name="'marvel-select-field-'+selectFieldService.getSelectFieldCount()"
-        id="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">
+        [name]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()"
+        [id]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">
         <option *ngFor="let op of options" [value]="op.value">{{op.description}}</option>
       </select>
     </div>

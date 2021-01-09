@@ -4,6 +4,14 @@ export interface DataWrapper<T> {
     copyright: string;
     attributionText: string;
     attributionHTML: string;
-    data: T;
+    data: DataWrapperData<T>;
     etag: string;
+}
+
+export interface DataWrapperData<T> {
+    offset: number;
+    limit: number;
+    total: number;
+    count: number;
+    results: T[];
 }
