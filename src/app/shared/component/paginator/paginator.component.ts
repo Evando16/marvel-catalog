@@ -5,13 +5,13 @@ import { PaginatorPageAction } from './paginator.enum';
 import { MarvelSelectFieldOption } from './../select-field/select-field.model';
 
 @Component({
-  selector: 'marvel-paginator',
+  selector: 'app-marvel-paginator',
   template: `
     <div class="marvel-paginator">
-      <marvel-button [disabled]="isPreviousBtnDisabled()" (onClick)="changePage('previous')"><</marvel-button>
-      <marvel-button [disabled]="isNextBtnDisabled()" (onClick)="changePage('next')">></marvel-button>
+      <app-marvel-button [disabled]="isPreviousBtnDisabled()" (btnClick)="changePage('previous')"><</app-marvel-button>
+      <app-marvel-button [disabled]="isNextBtnDisabled()" (btnClick)="changePage('next')">></app-marvel-button>
       <span>Current page: {{paginator.page}}</span>
-      <marvel-select-field [options]="itemsPerPageOptions" [label]="'Items per page'" (onChange)="onChangeItemsPerPage($event)"></marvel-select-field>
+      <app-marvel-select-field [options]="itemsPerPageOptions" [label]="'Items per page'" (selectChange)="onChangeItemsPerPage($event)"></app-marvel-select-field>
     </div>
   `,
   styleUrls: ['./paginator.component.scss']
@@ -19,7 +19,7 @@ import { MarvelSelectFieldOption } from './../select-field/select-field.model';
 export class PaginatorComponent implements OnInit {
   @Input() public total!: number;
   @Input() public itemsPerPageOptions!: MarvelSelectFieldOption[];
-  @Output() public onChange: EventEmitter<MarvelPaginator> = new EventEmitter();
+  @Output() public paginatorChange: EventEmitter<MarvelPaginator> = new EventEmitter();
   public paginator!: MarvelPaginator;
 
   public ngOnInit(): void {
@@ -34,12 +34,12 @@ export class PaginatorComponent implements OnInit {
     if (action === PaginatorPageAction.NEX) {
       this.paginator.page++;
     }
-    this.onChange.emit(this.paginator);
+    this.paginatorChange.emit(this.paginator);
   }
 
   public onChangeItemsPerPage(itemsPerPage: string): void {
     this.paginator.itemsPerPage = +itemsPerPage;
-    this.onChange.emit(this.paginator);
+    this.paginatorChange.emit(this.paginator);
   }
 
   public isPreviousBtnDisabled(): boolean {

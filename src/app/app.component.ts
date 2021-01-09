@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'marvel-root',
+  selector: 'app-root',
   template: `
     <section class="marvel-app pl-40 pr-40">
       <div class="marvel-app__menu mb-16">
