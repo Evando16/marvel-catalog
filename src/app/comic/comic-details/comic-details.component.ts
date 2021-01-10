@@ -30,7 +30,7 @@ import { ComicService } from '../comic.service';
               <span *ngIf="index !== item.creator.length - 1" class="mr-8">,</span>
             </span>
           </div>
-          <p *ngIf="staff.length === 0" id="marvel-comic-details__no-comic-staff">
+          <p *ngIf="comic.creators.length === 0" id="marvel-comic-details__no-comic-staff">
             No Staff registred for this comic
           </p>
         </div>
