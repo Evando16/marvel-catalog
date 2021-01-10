@@ -1,4 +1,4 @@
-export enum PaginatorPageAction {
-    NEX = 'next',
+export enum PaginatorPageDirection {
+    NEXT = 'next',
     PREVIOUS = 'previous'
 }

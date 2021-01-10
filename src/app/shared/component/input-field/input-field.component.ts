@@ -1,5 +1,5 @@
 import { InputFieldService } from './input-field.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
@@ -16,7 +16,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   `,
   styleUrls: ['./input-field.component.scss']
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, OnDestroy {
   @Input() public placeholder!: string;
   @Input() public label!: string;
   @Output() public keyPressed: EventEmitter<string> = new EventEmitter();
@@ -26,6 +26,10 @@ export class InputFieldComponent implements OnInit {
 
   public ngOnInit(): void {
     this.inputFieldService.addInputField();
+  }
+
+  public ngOnDestroy(): void {
+    this.inputFieldService.removeInputField();
   }
 
   public onKeyPressed(): void {

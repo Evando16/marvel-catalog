@@ -3,9 +3,8 @@ import { ImageUtils } from './../../shared/utils/image.utils';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { DataWrapper } from './../../shared/interface/data-wrapper.model';
-import { ComicService } from './../comic.service';
 import { ComicDetails } from '../comic.model';
+import { ComicService } from '../comic.service';
 
 @Component({
   selector: 'app-comic-details',
@@ -31,7 +30,7 @@ import { ComicDetails } from '../comic.model';
               <span *ngIf="index !== item.creator.length - 1" class="mr-8">,</span>
             </span>
           </div>
-          <p *ngIf="staff.length === 0">
+          <p *ngIf="staff.length === 0" id="marvel-comic-details__no-comic-staff">
             No Staff registred for this comic
           </p>
         </div>
@@ -44,7 +43,7 @@ import { ComicDetails } from '../comic.model';
               <span *ngIf="index !== comic.characters.length - 1" class="mr-8">,</span>
             </span>
           </div>
-          <p *ngIf="comic.characters.length === 0">
+          <p *ngIf="comic.characters.length === 0" id="marvel-comic-details__no-comic-character">
             No Characters registred for this comic
           </p>
         </div>
@@ -63,13 +62,11 @@ export class ComicDetailsComponent implements OnInit {
     private readonly comicService: ComicService
   ) { }
 
-  public ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.comicService.getComicById(+params.id).subscribe((result: DataWrapper<ComicDetails>) => {
-        this.comic = result.data.results[0];
-        this.thumbnailURL = ImageUtils.getThumbnailUrl(this.comic.thumbnail);
-        this.staff = this.getComicStaff(this.comic.creators);
-      });
+  public async ngOnInit(): Promise<void> {
+    this.activatedRoute.params.subscribe(async (params: Params) => {
+      this.comic = await this.comicService.getComicById(+params.id);
+      this.thumbnailURL = ImageUtils.getThumbnailUrl(this.comic.thumbnail);
+      this.staff = this.getComicStaff(this.comic.creators);
     });
   }
 
@@ -91,5 +88,4 @@ export class ComicDetailsComponent implements OnInit {
 
     return newStaffValue;
   }
-
 }

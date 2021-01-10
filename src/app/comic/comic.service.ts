@@ -1,84 +1,40 @@
+import { ImageUtils } from './../shared/utils/image.utils';
+import { PAGINATOR_OPTIONS } from './comic.constant';
+import { ComicHttpService } from './comic-http.service';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-import {
-  ComicDetails,
-  ComicListItem,
-  CreatorList,
-  ComicHttpDetails,
-  Creator,
-  CharacterList,
-  ComicCharacter
-} from './comic.model';
-import { DataWrapper } from './../shared/interface/data-wrapper.model';
-import { MARVEL_COMICS_ROUTE } from './../shared/constant/route.constant';
+import { Card } from '../shared/component/card/card.model';
+import { ComicListItem, ComicDetails } from './comic.model';
+import { DataWrapper } from '../shared/interface/data-wrapper.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComicService {
+  public comicCards: Card[] = [];
+  public totalComics!: number;
+  public paginatorOptions = PAGINATOR_OPTIONS;
 
-  constructor(private readonly httpClient: HttpClient) { }
+  private comicHttpWrapper!: DataWrapper<ComicListItem>;
 
-  public getComics(offset: number, limit: number): Observable<DataWrapper<ComicListItem>> {
-    const params = new HttpParams({
-      fromObject: {
-        offset: offset.toString(),
-        limit: limit.toString(),
-        orderBy: 'title'
-      }
+  constructor(private readonly comicHttpService: ComicHttpService) { }
+
+  public async requestComics(offset: number, limit: number): Promise<void> {
+    this.comicHttpWrapper = await this.comicHttpService.getComics(offset, limit);
+    this.totalComics = this.comicHttpWrapper.data.total;
+    this.comicCards = this.createCardList(this.comicHttpWrapper.data.results);
+  }
+
+  public async getComicById(id: number): Promise<ComicDetails> {
+    return (await this.comicHttpService.getComicById(id)).data.results[0];
+  }
+
+  private createCardList(result: ComicListItem[]): Card[] {
+    return result.map<Card>((comic: ComicListItem) => {
+      return {
+        id: comic.id,
+        title: comic.title,
+        thumbnailUrl: ImageUtils.getThumbnailUrl(comic.thumbnail)
+      };
     });
-
-    return this.httpClient.get<DataWrapper<ComicListItem>>(MARVEL_COMICS_ROUTE, { params })
-      .pipe(
-        map((httpResult: DataWrapper<ComicListItem>) => {
-          return {
-            ...httpResult,
-            data: {
-              ...httpResult.data,
-              results: httpResult.data.results.map((comic: ComicListItem) => {
-                return {
-                  id: comic.id,
-                  title: comic.title,
-                  thumbnail: comic.thumbnail
-                };
-              })
-            }
-          };
-        }));
-  }
-
-  public getComicById(id: number): Observable<DataWrapper<ComicDetails>> {
-    return this.httpClient.get<DataWrapper<ComicHttpDetails>>(`${MARVEL_COMICS_ROUTE}/${id}`)
-      .pipe(
-        map((httpResult: DataWrapper<ComicHttpDetails>) => {
-          return {
-            ...httpResult,
-            data: {
-              ...httpResult.data,
-              results: httpResult.data.results.map((comic: ComicHttpDetails) => {
-                return {
-                  id: comic.id,
-                  title: comic.title,
-                  description: comic.description,
-                  thumbnail: comic.thumbnail,
-                  creators: this.mapComicCreators(comic.creators),
-                  characters: this.mapComicCharacters(comic.characters),
-                };
-              })
-            }
-          };
-        })
-      );
-  }
-
-  private mapComicCreators(creatorList: CreatorList): Creator[] {
-    return creatorList.items.map((creator: Creator) => ({ name: creator.name, role: creator.role }));
-  }
-
-  private mapComicCharacters(characterList: CharacterList): ComicCharacter[] {
-    return characterList.items.map((character: ComicCharacter) => ({ name: character.name }));
   }
 }

@@ -10,7 +10,7 @@ describe('InputFieldComponent', () => {
   let inputFieldServiceSpy: jasmine.SpyObj<InputFieldService>;
 
   beforeEach(async () => {
-    inputFieldServiceSpy = jasmine.createSpyObj(InputFieldService, ['addInputField', 'getInputFieldCount']);
+    inputFieldServiceSpy = jasmine.createSpyObj(InputFieldService, ['addInputField', 'getInputFieldCount', 'removeInputField']);
 
     await TestBed.configureTestingModule({
       declarations: [InputFieldComponent],
@@ -41,6 +41,14 @@ describe('InputFieldComponent', () => {
       expect(inputFieldServiceSpy.addInputField).toHaveBeenCalledWith();
     });
 
+    it('should decrease input count on destroy', () => {
+      inputFieldServiceSpy.removeInputField.calls.reset();
+
+      component.ngOnDestroy();
+
+      expect(inputFieldServiceSpy.removeInputField).toHaveBeenCalledWith();
+    });
+
     it('should emit event when press key', () => {
       const event = spyOn(component.keyPressed, 'emit');
       const expectedInputValue = 'input value when key is pressed';
@@ -50,6 +58,5 @@ describe('InputFieldComponent', () => {
 
       expect(event).toHaveBeenCalledWith(expectedInputValue);
     });
-
   });
 });
