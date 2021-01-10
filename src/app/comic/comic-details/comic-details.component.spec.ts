@@ -57,7 +57,7 @@ const staffMock: ComicDetailsStaff[] = [
 
 const thumbnailURL = 'http://i.annihil.us/u/prod/marvel/i/mg/c/f0/5df3fc8b3c883/resolution.jpg';
 
-fdescribe('ComicDetailsComponent', () => {
+describe('ComicDetailsComponent', () => {
   let component: ComicDetailsComponent;
   let fixture: ComponentFixture<ComicDetailsComponent>;
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
