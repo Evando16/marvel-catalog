@@ -1,22 +1,22 @@
 import { InputFieldService } from './input-field.service';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
   template: `
     <div class="marvel-input-field">
       <label [for]="'marvel-input-field-'+inputFieldService.getInputFieldCount()">{{label}}</label>
-      <input 
+      <input
         class="marvel-input-field__input"
-        [placeholder]="placeholder" 
-        [(ngModel)]="inputValue" 
+        [placeholder]="placeholder"
+        [(ngModel)]="inputValue"
         name="'marvel-input-field-'+inputFieldService.getInputFieldCount()"
         (keydown.enter)="onKeyPressed()">
     </div>
   `,
   styleUrls: ['./input-field.component.scss']
 })
-export class InputFieldComponent implements OnInit {
+export class InputFieldComponent implements OnInit, OnDestroy {
   @Input() public placeholder!: string;
   @Input() public label!: string;
   @Output() public keyPressed: EventEmitter<string> = new EventEmitter();
@@ -26,6 +26,10 @@ export class InputFieldComponent implements OnInit {
 
   public ngOnInit(): void {
     this.inputFieldService.addInputField();
+  }
+
+  public ngOnDestroy(): void {
+    this.inputFieldService.removeInputField();
   }
 
   public onKeyPressed(): void {

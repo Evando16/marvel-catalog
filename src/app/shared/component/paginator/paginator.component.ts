@@ -1,7 +1,7 @@
 import { Paginator } from './paginator.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { PaginatorPageAction } from './paginator.enum';
+import { PaginatorPageDirection } from './paginator.enum';
 import { MarvelSelectFieldOption } from './../select-field/select-field.model';
 
 @Component({
@@ -23,17 +23,16 @@ export class PaginatorComponent implements OnInit {
   public paginator!: Paginator;
 
   public ngOnInit(): void {
-    this.paginator = { page: 1, itemsPerPage: 10 };
+    this.paginator = { page: 1, itemsPerPage: +this.itemsPerPageOptions[0].value };
   }
 
   public changePage(action: string): void {
-    if (action === PaginatorPageAction.PREVIOUS) {
+    if (action === PaginatorPageDirection.PREVIOUS) {
       this.paginator.page--;
-    }
-
-    if (action === PaginatorPageAction.NEX) {
+    } else if (action === PaginatorPageDirection.NEXT) {
       this.paginator.page++;
     }
+
     this.paginatorChange.emit(this.paginator);
   }
 

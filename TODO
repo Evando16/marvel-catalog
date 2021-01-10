@@ -8,13 +8,19 @@
 
 
 -----------------------------------------------
-* Check how to create private enviroments on GitHub (done with heroku)
+* Check how to create private enviroments on GitHub (DONE WITH HEROKU)
     -- https://github.com/Evando16/marvel-catalog/settings/secrets/actions
-- Check a way to remove unnecessary prop when request data (done)
-* Check best way to "interpret" HTML received by API
+- Check a way to remove unnecessary prop when request data (DONE)
+- Check best way to "interpret" HTML received by API
     - There is a xss problem with the innerHTML prop
 * Create @mixin to style the place-content css prop
-* Check a way to put ellipsis with flex layout to be used on description
+* CHANGE IMAGEUTILS TO GET IMAGE USING THE RESOLUTION
 + Test the ngClass, in this case it's a critic scenario and we should test it
 * Change style when button is disabled
 * Fix layout when there are few cards (try to find juggernaut on characters page)
+
+
+
+
+
+- Check a way to put ellipsis with flex layout to be used on description

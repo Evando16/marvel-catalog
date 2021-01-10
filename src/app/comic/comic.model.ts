@@ -6,6 +6,12 @@ export interface ComicListItem {
     thumbnail: Image;
 }
 
+export interface ComicHttp {
+    id: number;
+    title: string;
+    thumbnail: Image;
+}
+
 export interface CreatorList {
     items: Creator[];
 }
