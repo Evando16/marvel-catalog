@@ -5,6 +5,10 @@ const routes: Routes = [
   {
     path: 'comics',
     loadChildren: () => import('./comic/comic.module').then(module => module.ComicModule)
+  },
+  {
+    path: 'characters',
+    loadChildren: () => import('./character/character.module').then(module => module.CharacterModule)
   }
 ];
 

@@ -3,7 +3,7 @@ import { MarvelSelectFieldOption } from './select-field.model';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-marvel-select-field',
+  selector: 'app-select-field',
   template: `
     <div class="marvel-select-field">
       <label [for]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">{{label}}</label>

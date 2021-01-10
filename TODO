@@ -17,3 +17,4 @@
 * Check a way to put ellipsis with flex layout to be used on description
 + Test the ngClass, in this case it's a critic scenario and we should test it
 * Change style when button is disabled
+* Fix layout when there are few cards (try to find juggernaut on characters page)

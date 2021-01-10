@@ -3,7 +3,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ComicDetails, ComicListItem, CreatorList, ComicHttpDetails, Creator, CharacterList, Character } from './comic.model';
+import { ComicDetails, ComicListItem, CreatorList, ComicHttpDetails, Creator, CharacterList, ComicCharacter } from './comic.model';
 import { DataWrapper } from './../shared/interface/data-wrapper.model';
 import { MARVEL_COMICS_ROUTE } from './../shared/constant/route.constant';
 
@@ -70,7 +70,7 @@ export class ComicService {
     return creatorList.items.map((creator: Creator) => ({ name: creator.name, role: creator.role }));
   }
 
-  private mapComicCharacters(characterList: CharacterList): Character[] {
-    return characterList.items.map((character: Character) => ({ name: character.name }));
+  private mapComicCharacters(characterList: CharacterList): ComicCharacter[] {
+    return characterList.items.map((character: ComicCharacter) => ({ name: character.name }));
   }
 }

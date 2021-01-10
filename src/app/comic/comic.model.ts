@@ -16,10 +16,10 @@ export interface Creator {
 }
 
 export interface CharacterList {
-    items: Character[];
+    items: ComicCharacter[];
 }
 
-export interface Character {
+export interface ComicCharacter {
     name: string;
 }
 
@@ -29,7 +29,7 @@ export interface ComicDetails {
     description: string;
     thumbnail: Image;
     creators: Creator[];
-    characters: Character[];
+    characters: ComicCharacter[];
 }
 
 export interface ComicHttpDetails {
