@@ -1,17 +1,17 @@
-import { MarvelPaginator } from './paginator.model';
+import { Paginator } from './paginator.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { PaginatorPageAction } from './paginator.enum';
 import { MarvelSelectFieldOption } from './../select-field/select-field.model';
 
 @Component({
-  selector: 'app-marvel-paginator',
+  selector: 'app-paginator',
   template: `
     <div class="marvel-paginator">
-      <app-marvel-button [disabled]="isPreviousBtnDisabled()" (btnClick)="changePage('previous')"><</app-marvel-button>
-      <app-marvel-button [disabled]="isNextBtnDisabled()" (btnClick)="changePage('next')">></app-marvel-button>
+      <app-button [disabled]="isPreviousBtnDisabled()" (btnClick)="changePage('previous')"><</app-button>
+      <app-button [disabled]="isNextBtnDisabled()" (btnClick)="changePage('next')">></app-button>
       <span>Current page: {{paginator.page}}</span>
-      <app-marvel-select-field [options]="itemsPerPageOptions" [label]="'Items per page'" (selectChange)="onChangeItemsPerPage($event)"></app-marvel-select-field>
+      <app-select-field [options]="itemsPerPageOptions" [label]="'Items per page'" (selectChange)="onChangeItemsPerPage($event)"></app-select-field>
     </div>
   `,
   styleUrls: ['./paginator.component.scss']
@@ -19,8 +19,8 @@ import { MarvelSelectFieldOption } from './../select-field/select-field.model';
 export class PaginatorComponent implements OnInit {
   @Input() public total!: number;
   @Input() public itemsPerPageOptions!: MarvelSelectFieldOption[];
-  @Output() public paginatorChange: EventEmitter<MarvelPaginator> = new EventEmitter();
-  public paginator!: MarvelPaginator;
+  @Output() public paginatorChange: EventEmitter<Paginator> = new EventEmitter();
+  public paginator!: Paginator;
 
   public ngOnInit(): void {
     this.paginator = { page: 1, itemsPerPage: 10 };
