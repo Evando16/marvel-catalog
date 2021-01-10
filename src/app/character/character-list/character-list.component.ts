@@ -16,7 +16,7 @@ import { CharacterService } from '../character.service';
         (keyPressed)="onFilterChange($event)">
       </app-input-field>
       <div class="character-list__card-container">
-        <app-card 
+        <app-card
           class="character-list__card"
           *ngFor="let card of characterService.characterCards"
           [card]="card">
@@ -27,7 +27,7 @@ import { CharacterService } from '../character.service';
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
-  private offset: number = 0;
+  private offset = 0;
   private itemsPerPage!: number;
   private filterByNameValue!: string;
 

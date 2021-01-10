@@ -1,4 +1,4 @@
-import { Image } from "../shared/interface/image.model";
+import { Image } from '../shared/interface/image.model';
 
 export interface CharacterHttp {
     id: number;

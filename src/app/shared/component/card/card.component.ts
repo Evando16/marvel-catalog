@@ -12,10 +12,7 @@ import { Card } from './card.model';
   `,
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
   @Input() public card!: Card;
-  constructor() { }
-
-  public ngOnInit(): void { }
 }

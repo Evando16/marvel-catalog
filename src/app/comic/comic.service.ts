@@ -3,7 +3,15 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ComicDetails, ComicListItem, CreatorList, ComicHttpDetails, Creator, CharacterList, ComicCharacter } from './comic.model';
+import {
+  ComicDetails,
+  ComicListItem,
+  CreatorList,
+  ComicHttpDetails,
+  Creator,
+  CharacterList,
+  ComicCharacter
+} from './comic.model';
 import { DataWrapper } from './../shared/interface/data-wrapper.model';
 import { MARVEL_COMICS_ROUTE } from './../shared/constant/route.constant';
 

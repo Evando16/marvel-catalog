@@ -49,7 +49,7 @@ export class ComicListComponent implements OnInit {
       return {
         id: comic.id,
         title: comic.title,
-        thumbnailUrl: ImageUtils.getComicThumbnailUrl(comic.thumbnail)
+        thumbnailUrl: ImageUtils.getThumbnailUrl(comic.thumbnail)
       };
     });
   }

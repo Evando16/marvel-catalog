@@ -29,7 +29,7 @@ export class CharacterService {
     return characters.map((character: Character) => ({
       id: character.id,
       title: character.name,
-      thumbnailUrl: ImageUtils.getComicThumbnailUrl(character.thumbnail)
+      thumbnailUrl: ImageUtils.getThumbnailUrl(character.thumbnail)
     }));
   }
 }

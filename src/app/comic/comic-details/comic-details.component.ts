@@ -67,7 +67,7 @@ export class ComicDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.comicService.getComicById(+params.id).subscribe((result: DataWrapper<ComicDetails>) => {
         this.comic = result.data.results[0];
-        this.thumbnailURL = ImageUtils.getComicThumbnailUrl(this.comic.thumbnail);
+        this.thumbnailURL = ImageUtils.getThumbnailUrl(this.comic.thumbnail);
         this.staff = this.getComicStaff(this.comic.creators);
       });
     });

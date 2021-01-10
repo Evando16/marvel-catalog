@@ -25,7 +25,8 @@ export class CharacterHttpService {
       params = params.append('nameStartsWith', nameStartsWith);
     }
 
-    const result: DataWrapper<CharacterHttp> = await this.httpClient.get<DataWrapper<CharacterHttp>>(MARVEL_CHARACTERS_ROUTE, { params }).toPromise();
+    const result: DataWrapper<CharacterHttp> = await this.httpClient
+      .get<DataWrapper<CharacterHttp>>(MARVEL_CHARACTERS_ROUTE, { params }).toPromise();
     return {
       ...result,
       data: {
@@ -42,6 +43,6 @@ export class CharacterHttpService {
         name: character.name,
         thumbnail: character.thumbnail
       }
-    ))]
+    ))];
   }
 }

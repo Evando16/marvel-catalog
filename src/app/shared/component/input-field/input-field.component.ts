@@ -6,10 +6,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   template: `
     <div class="marvel-input-field">
       <label [for]="'marvel-input-field-'+inputFieldService.getInputFieldCount()">{{label}}</label>
-      <input 
+      <input
         class="marvel-input-field__input"
-        [placeholder]="placeholder" 
-        [(ngModel)]="inputValue" 
+        [placeholder]="placeholder"
+        [(ngModel)]="inputValue"
         name="'marvel-input-field-'+inputFieldService.getInputFieldCount()"
         (keydown.enter)="onKeyPressed()">
     </div>
