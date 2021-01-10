@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-marvel-button',
+  selector: 'app-button',
   template: `
     <button class="marvel-button pl-16 pr-16 pt-8 pb-8" [ngClass]="{'marvel-button--disabled': disabled}" (click)="onBtnClick()">
       <ng-content></ng-content>

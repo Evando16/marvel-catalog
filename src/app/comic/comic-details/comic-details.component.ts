@@ -1,4 +1,4 @@
-import { ComicDetailsStaff, Creator, Character } from './../comic.model';
+import { ComicDetailsStaff, Creator } from './../comic.model';
 import { ImageUtils } from './../../shared/utils/image.utils';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -8,7 +8,7 @@ import { ComicService } from './../comic.service';
 import { ComicDetails } from '../comic.model';
 
 @Component({
-  selector: 'app-marvel-comic-details',
+  selector: 'app-comic-details',
   template: `
     <section *ngIf="!!comic" class="marvel-comic-details">
       <div class="marvel-comic-details__container">
