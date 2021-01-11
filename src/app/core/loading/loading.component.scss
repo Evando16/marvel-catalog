@@ -1,0 +1,32 @@
+.marvel-loading {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-content: center center;
+
+  &__spinner {
+    font-size: 250px;
+    color: #ec1d24;
+
+    display: flex;
+    flex-direction: column;
+    place-content: center center;
+    animation: pulse-symbol 3s infinite ease-in-out;
+  }
+
+  @keyframes pulse-symbol {
+
+    0%,
+    100% {
+      transform: scale(0);
+      -webkit-transform: scale(.9);
+    }
+    50% {
+      transform: scale(1);
+      -webkit-transform: scale(1);
+    }
+  }
+}

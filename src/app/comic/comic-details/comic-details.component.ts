@@ -12,7 +12,7 @@ import { ComicService } from '../comic.service';
     <section *ngIf="!!comic" class="marvel-comic-details">
       <div class="marvel-comic-details__container">
         <div class="marvel-comic-details__comic-header mb-40">
-          <img [src]="thumbnailURL" [alt]="comic.title" class="mr-40">
+          <img [src]="thumbnailURL" [alt]="comic.title">
           <div>
             <b>{{comic.title}}</b>
             <p class="marvel-comic-details__comic-header--subtitle">

@@ -105,7 +105,7 @@ describe('PaginatorComponent', () => {
     it('should disable next button', () => {
       const total = 100;
       component.total = total;
-      component.paginator = { itemsPerPage: 50, page: 2 };
+      component.paginator = { itemsPerPage: 70, page: 2 };
 
       expect(component.isNextBtnDisabled()).toBeTrue();
     });

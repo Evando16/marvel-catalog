@@ -33,9 +33,6 @@ describe('ComicListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ComicListComponent);
     component = fixture.componentInstance;
-    // Create a objet to be used in this of
-    // ComicHttpServiceSpy.getComics.and.returnValue(of());
-    // ComicHttpServiceSpy.getComicById.and.returnValue(of());
     fixture.detectChanges();
   });
 

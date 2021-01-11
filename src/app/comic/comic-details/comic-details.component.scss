@@ -8,35 +8,76 @@
     max-width: 65%;
   }
 
-  &__comic-header {
-    display: flex;
-    flex-direction: row;
+  @media screen and (max-width: 1279px) {
+    &__comic-header {
+      display: flex;
+      flex-direction: column;
 
-    &--subtitle {
-      font-size: 14px;
+      &--subtitle {
+        font-size: 14px;
+      }
+    }
+
+    img {
+      margin-bottom: 40px;
     }
   }
 
-  &__comic-staff {
-    display: flex;
-    flex-direction: row;
-    font-size: 12px;
-    flex-wrap: wrap;
+  @media screen and (min-width: 1280px) and (max-width: 5000px) {
+    &__comic-header {
+      display: flex;
+      flex-direction: row;
+
+      &--subtitle {
+        font-size: 14px;
+      }
+    }
+
+    img {
+      margin-right: 40px;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    &__comic-staff {
+      display: flex;
+      flex-direction: column;
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    &__comic-characters {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      font-size: 12px;
+      margin-top: 12px;
+    }
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 5000px) {
+    &__comic-staff {
+      display: flex;
+      flex-direction: row;
+      font-size: 12px;
+      flex-wrap: wrap;
+    }
+
+    &__comic-characters {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      font-size: 12px;
+      margin-top: 12px;
+    }
   }
 
   &__role {
     font-weight: 600;
   }
 
-  &__comic-characters {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 12px;
-    margin-top: 12px;
-  }
-
-  .marvel-comic-details__comic-staff > .marvel-comic-details__staff-group:not(:last-child) {
+  .marvel-comic-details__comic-staff
+    > .marvel-comic-details__staff-group:not(:last-child) {
     margin-right: 5%;
   }
 }

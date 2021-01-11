@@ -50,8 +50,8 @@ export class PaginatorComponent implements OnInit {
   }
 
   public isNextBtnDisabled(): boolean {
-    const maxPag = Math.floor(this.total / this.paginator.itemsPerPage);
-    if (!!!this.total || maxPag === this.paginator.page) {
+    const currentOffset = this.paginator.itemsPerPage * this.paginator.page;
+    if (!!!this.total || this.total < currentOffset) {
       return true;
     }
 
