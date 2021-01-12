@@ -16,7 +16,7 @@ describe('FooterService', () => {
     });
 
     it('should set and get footer value', () => {
-      const footerHtml = '<a href="http://marvel.com">Data provided by Marvel. © 2021 MARVEL</a>'
+      const footerHtml = '<a href="http://marvel.com">Data provided by Marvel. © 2021 MARVEL</a>';
 
       service.setFooter(footerHtml);
       expect(service.getFooter()).toEqual(footerHtml);

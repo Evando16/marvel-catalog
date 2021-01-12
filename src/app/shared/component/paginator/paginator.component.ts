@@ -19,7 +19,7 @@ import { MarvelSelectFieldOption } from './../select-field/select-field.model';
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit, OnChanges {
-  @Input() public total: number = 0;
+  @Input() public total = 0;
   @Input() public itemsPerPageOptions!: MarvelSelectFieldOption[];
   @Output() public paginatorChange: EventEmitter<Paginator> = new EventEmitter();
   public paginator?: Paginator;
@@ -79,7 +79,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
 
       return false;
     }
-    return true
+    return true;
   }
 
   private setNumberOfPages(): void {
