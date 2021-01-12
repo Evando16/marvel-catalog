@@ -4,9 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <app-toolbar></app-toolbar>
-    <section class="ml-40 mr-40 mb-40 mt-24">
+    <div class="ml-40 mr-40 mb-40 mt-24">
       <router-outlet></router-outlet>
-    </section>
+    </div>
+    <app-footer></app-footer>
     <app-loading></app-loading>
   `
 })

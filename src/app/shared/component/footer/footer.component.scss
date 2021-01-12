@@ -1,0 +1,27 @@
+:host ::ng-deep .marvel-footer {
+  position: sticky;
+  bottom: 0;
+  height: 50px;
+  background-color: #202020;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  place-content: center center;
+  align-items: center;
+
+  a {
+    color: #999;
+    &:visited {
+      color: #999;
+    }
+
+    &:hover {
+      color: #fff;
+    }
+
+    &:focus {
+      outline: none;
+      color: #fff;
+    }
+  }
+}

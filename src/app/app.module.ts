@@ -1,3 +1,4 @@
+import { FooterModule } from './shared/component/footer/footer.module';
 import { ApiKeyInterceptor } from './core/api-key.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { ToolbarModule } from './shared/component/toolbar/toolbar.module';
     AppRoutingModule,
     HttpClientModule,
     CoreModule,
-    ToolbarModule
+    ToolbarModule,
+    FooterModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true }

@@ -31,6 +31,7 @@ describe('PaginatorComponent', () => {
     fixture = TestBed.createComponent(PaginatorComponent);
     component = fixture.componentInstance;
     component.itemsPerPageOptions = [...itemsPerPageOptions];
+    component.paginator = { ...paginator };
     fixture.detectChanges();
   });
 
@@ -44,6 +45,13 @@ describe('PaginatorComponent', () => {
 
       component.ngOnInit();
       expect(component.paginator).toEqual(paginator);
+    });
+    it('should not change when paginator is undefined', () => {
+      const paginatorChangeSpy = spyOn(component.paginatorChange, 'emit');
+      component.paginator = undefined;
+      component.changePage(PaginatorPageDirection.NEXT);
+
+      expect(paginatorChangeSpy).not.toHaveBeenCalled();
     });
 
     it('should change to next page', () => {
@@ -85,19 +93,36 @@ describe('PaginatorComponent', () => {
       expect(paginatorChangeSpy).toHaveBeenCalledWith({ ...paginator, itemsPerPage: 50 });
     });
 
+    it('should not emit change when paginator is undefined', () => {
+      const paginatorChangeSpy = spyOn(component.paginatorChange, 'emit');
+      component.paginator = undefined;
+      component.onChangeItemsPerPage('50');
+
+      expect(paginatorChangeSpy).not.toHaveBeenCalledWith();
+    });
+
     it('should disable previous button', () => {
       const total = 100;
       const firstPage = 1;
       component.total = total;
+      component.paginator = { ...paginator };
       component.paginator.page = firstPage;
 
       expect(component.isPreviousBtnDisabled()).toBeTrue();
+    });
+
+    it('should disable previous and next button when paginator is undefined', () => {
+      component.paginator = undefined;
+
+      expect(component.isPreviousBtnDisabled()).toBeTrue();
+      expect(component.isNextBtnDisabled()).toBeTrue();
     });
 
     it('should not disable previous button', () => {
       const total = 100;
       const secondPage = 2;
       component.total = total;
+      component.paginator = { ...paginator };
       component.paginator.page = secondPage;
 
       expect(component.isPreviousBtnDisabled()).toBeFalse();
@@ -124,6 +149,15 @@ describe('PaginatorComponent', () => {
       expect(component.numberOfPage).toBeUndefined();
     });
 
+    it('should not calculate the number of pages on change and paginator is undefined', () => {
+      const paginatorChangeSpy = spyOn(component.paginatorChange, 'emit');
+      component.paginator = undefined;
+      component.ngOnChanges();
+
+      expect(component.numberOfPage).toBeUndefined();
+      expect(paginatorChangeSpy).not.toHaveBeenCalled();
+    });
+
     it('should calculate the number of pages on change', () => {
       const paginatorChangeSpy = spyOn(component.paginatorChange, 'emit');
       const expectedNumberOfPages = 10;
@@ -131,6 +165,7 @@ describe('PaginatorComponent', () => {
       const itemsPerPage = 10;
       component.numberOfPage = 0;
       component.total = totalItems;
+      component.paginator = { ...paginator };
       component.paginator.itemsPerPage = itemsPerPage;
 
       component.ngOnChanges();
@@ -146,6 +181,7 @@ describe('PaginatorComponent', () => {
       const itemsPerPage = 10;
       component.numberOfPage = 0;
       component.total = totalItems;
+      component.paginator = { ...paginator };
       component.paginator.itemsPerPage = itemsPerPage;
       component.itemsPerPageOptions = [{ ...itemsPerPageOptions[0], value: 10 }];
 

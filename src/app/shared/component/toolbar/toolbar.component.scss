@@ -32,6 +32,11 @@
       color: #fff;
     }
 
+    &:focus {
+      outline: none;
+      color: #fff;
+    }
+
     &:not(:last-of-type) {
       border-left: 1px solid #393939;
       border-right: 1px solid #393939;

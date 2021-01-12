@@ -4,22 +4,54 @@ import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { CharacterHttp } from '../character/character.model';
+import { FooterService } from '../shared/component/footer/footer.service';
 import { MARVEL_BASE_API_ROUTE } from '../shared/constant/route.constant';
+import { DataWrapper } from '../shared/interface/data-wrapper.model';
 import { ApiKeyInterceptor } from './api-key.interceptor';
 import { LoadingService } from './loading/loading.service';
+
+const apiReturn: DataWrapper<CharacterHttp> = {
+  code: 200,
+  status: 'Ok',
+  copyright: '© 2021 MARVEL',
+  attributionText: 'Data provided by Marvel. © 2021 MARVEL',
+  attributionHTML: '<a href=\"http://marvel.com\">Data provided by Marvel. © 2021 MARVEL</a>',
+  etag: '9a60850f148f8341b9c36f34aaa30b1e4dac0d79',
+  data: {
+    offset: 0,
+    limit: 1,
+    total: 10,
+    count: 1,
+    results: [
+      {
+        id: 1011334,
+        name: '3-D Ma',
+        thumbnail: {
+          path: 'http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784',
+          extension: 'jpg'
+        }
+      }
+    ]
+  }
+};
 
 describe('ApiKeyInterceptor', () => {
   let interceptor: ApiKeyInterceptor;
   let httpHandlerSpy: jasmine.SpyObj<HttpHandler>;
   let loadingServiceSpy: jasmine.SpyObj<LoadingService>;
+  let footerServiceSpy: jasmine.SpyObj<FooterService>;
+
   beforeEach(() => {
     httpHandlerSpy = jasmine.createSpyObj(HttpHandler, ['handle']);
     loadingServiceSpy = jasmine.createSpyObj(LoadingService, ['stopLoading', 'startLoading']);
+    footerServiceSpy = jasmine.createSpyObj(FooterService, ['setFooter']);
 
     TestBed.configureTestingModule({
       providers: [
         ApiKeyInterceptor,
-        { provide: LoadingService, useValue: loadingServiceSpy }
+        { provide: LoadingService, useValue: loadingServiceSpy },
+        { provide: FooterService, useValue: footerServiceSpy }
       ]
     });
 
@@ -88,6 +120,17 @@ describe('ApiKeyInterceptor', () => {
 
       interceptor.intercept(request, httpHandlerSpy).subscribe(() => {
         expect(loadingServiceSpy.stopLoading).toHaveBeenCalledWith();
+      });
+    });
+
+    it('should set footer when finish a Marvel API request', () => {
+      environment.marvelPublicKey = '1616';
+      footerServiceSpy.setFooter.calls.reset();
+      httpHandlerSpy.handle.and.returnValue(of(new HttpResponse({ body: apiReturn })));
+      const request = new HttpRequest('GET', MARVEL_BASE_API_ROUTE);
+
+      interceptor.intercept(request, httpHandlerSpy).subscribe(() => {
+        expect(footerServiceSpy.setFooter).toHaveBeenCalledWith(apiReturn.attributionHTML);
       });
     });
 
