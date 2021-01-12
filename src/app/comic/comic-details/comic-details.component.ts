@@ -15,9 +15,7 @@ import { ComicService } from '../comic.service';
           <img [src]="thumbnailURL" [alt]="comic.title">
           <div>
             <b>{{comic.title}}</b>
-            <p class="marvel-comic-details__comic-header--subtitle">
-              {{comic.description}}
-            </p>
+            <p class="marvel-comic-details__comic-header--subtitle" [innerHTML]="comic.description"></p>
           </div>
         </div>
 
