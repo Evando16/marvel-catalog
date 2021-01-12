@@ -17,6 +17,7 @@
   &--disabled {
     cursor: none;
     background-color: rgba(0, 0, 0, 0.01);
+    color: gray;
     opacity: 0.7;
     border: 1px dashed gray;
     pointer-events: none;

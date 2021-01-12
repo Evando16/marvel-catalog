@@ -7,14 +7,17 @@ import { CharacterService } from '../character.service';
   selector: 'app-character-list',
   template: `
     <section class="character-list">
-      <app-paginator (paginatorChange)="onChangePage($event)"
-        [itemsPerPageOptions]="characterService.paginatorOptions"
-        [total]="characterService.totalCharacters"></app-paginator>
-      <app-input-field
-        [placeholder]="'Search by name'"
-        [label]="'Filter'"
-        (keyPressed)="onFilterChange($event)">
-      </app-input-field>
+      <div class="character-list__filters-container mb-16">
+        <app-input-field class="character-list__filter-name"
+          [placeholder]="'Search by name'"
+          [label]="'Filter'"
+          (keyPressed)="onFilterChange($event)">
+        </app-input-field>
+        <app-paginator class="character-list__paginator"
+          (paginatorChange)="onChangePage($event)"
+          [itemsPerPageOptions]="characterService.paginatorOptions"
+          [total]="characterService.totalCharacters"></app-paginator>
+      </div>
       <div class="character-list__card-container">
         <app-card
           class="character-list__card"

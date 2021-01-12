@@ -6,12 +6,14 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
   selector: 'app-select-field',
   template: `
     <div class="marvel-select-field">
-      <label [for]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">{{label}}</label>
-      <select class="marvel-select-field__select" [(ngModel)]="selectValue" (change)="onChangeSelect()"
-        [name]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()"
-        [id]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">
-        <option *ngFor="let op of options" [value]="op.value">{{op.description}}</option>
-      </select>
+      <div>
+        <label [for]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()" class="mr-8">{{label}}</label>
+        <select class="marvel-select-field__select" [(ngModel)]="selectValue" (change)="onChangeSelect()"
+          [name]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()"
+          [id]="'marvel-select-field-'+selectFieldService.getSelectFieldCount()">
+          <option *ngFor="let op of options" [value]="op.value">{{op.description}}</option>
+        </select>
+      </div>
     </div>
   `,
   styleUrls: ['./select-field.component.scss']

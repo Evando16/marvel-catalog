@@ -1,9 +1,0 @@
-.marvel-app {
-  &__menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-    gap: 16px;
-    // background-color: #202020;
-    font-weight: 600;
-  }
-}

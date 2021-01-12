@@ -14,4 +14,31 @@
       cursor: pointer;
     }
   }
+
+  &__paginator-wrapper {
+    display: flex;
+    flex-direction: row;
+    place-content: center flex-end;
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1919px) {
+    &__paginator {
+      width: 30%;
+      max-width: 30%;
+    }
+  }
+
+  @media screen and (min-width: 1920px) and (max-width: 5000px) {
+    &__paginator {
+      width: 20%;
+      max-width: 20%;
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
+    &__paginator {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
 }

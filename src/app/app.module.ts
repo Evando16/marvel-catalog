@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { ToolbarModule } from './shared/component/toolbar/toolbar.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    ToolbarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ApiKeyInterceptor, multi: true }

@@ -2,7 +2,6 @@ import { PAGINATOR_OPTIONS } from './../comic/comic.constant';
 import { DataWrapper } from './../shared/interface/data-wrapper.model';
 import { CharacterHttpService } from './character-http.service';
 import { ImageUtils } from './../shared/utils/image.utils';
-import { Paginator } from './../shared/component/paginator/paginator.model';
 import { Injectable } from '@angular/core';
 import { Character } from './character.model';
 import { Card } from '../shared/component/card/card.model';

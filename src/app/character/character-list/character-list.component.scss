@@ -9,4 +9,43 @@
     display: flex;
     flex-grow: 1;
   }
+
+  &__filters-container {
+    display: flex;
+    flex-direction: row;
+    place-content: start space-between;
+  }
+
+  &__filter-name {
+    max-width: 20%;
+    flex-grow: 1;
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1919px) {
+    &__paginator {
+      max-width: 32%;
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (min-width: 1920px) and (max-width: 5000px) {
+    &__paginator {
+      max-width: 20%;
+      flex-grow: 1;
+    }
+  }
+
+  @media screen and (max-width: 1279px) {
+    &__filter-name {
+      max-width: 100%;
+      flex-grow: 1;
+      margin-top: 16px;
+    }
+
+    &__filters-container {
+      display: flex;
+      flex-direction: column-reverse;
+      // place-content: start space-between;
+    }
+  }
 }

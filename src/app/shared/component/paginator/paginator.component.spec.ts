@@ -30,7 +30,7 @@ describe('PaginatorComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PaginatorComponent);
     component = fixture.componentInstance;
-    component.itemsPerPageOptions = itemsPerPageOptions;
+    component.itemsPerPageOptions = [...itemsPerPageOptions];
     fixture.detectChanges();
   });
 
@@ -40,7 +40,7 @@ describe('PaginatorComponent', () => {
     });
 
     it('should start component with page one and first items per page option value', () => {
-      component.itemsPerPageOptions = itemsPerPageOptions;
+      component.itemsPerPageOptions = [...itemsPerPageOptions];
 
       component.ngOnInit();
       expect(component.paginator).toEqual(paginator);
@@ -81,6 +81,7 @@ describe('PaginatorComponent', () => {
       component.onChangeItemsPerPage('50');
 
       expect(component.paginator).toEqual({ ...paginator, itemsPerPage: 50 });
+      expect(component.paginator.page).toEqual(1);
       expect(paginatorChangeSpy).toHaveBeenCalledWith({ ...paginator, itemsPerPage: 50 });
     });
 
@@ -117,5 +118,41 @@ describe('PaginatorComponent', () => {
 
       expect(component.isNextBtnDisabled()).toBeFalse();
     });
+
+    it('should not calculate the number of pages on change and total is not valid', () => {
+      component.ngOnChanges();
+      expect(component.numberOfPage).toBeUndefined();
+    });
+
+    it('should calculate the number of pages on change', () => {
+      const paginatorChangeSpy = spyOn(component.paginatorChange, 'emit');
+      const expectedNumberOfPages = 10;
+      const totalItems = 100;
+      const itemsPerPage = 10;
+      component.numberOfPage = 0;
+      component.total = totalItems;
+      component.paginator.itemsPerPage = itemsPerPage;
+
+      component.ngOnChanges();
+
+      expect(component.numberOfPage).toEqual(expectedNumberOfPages);
+      expect(component.paginator.page).toEqual(1);
+      expect(paginatorChangeSpy).toHaveBeenCalledWith({ ...paginator, itemsPerPage });
+    });
+
+    it('should calculate the number of pages on init', () => {
+      const expectedNumberOfPages = 10;
+      const totalItems = 100;
+      const itemsPerPage = 10;
+      component.numberOfPage = 0;
+      component.total = totalItems;
+      component.paginator.itemsPerPage = itemsPerPage;
+      component.itemsPerPageOptions = [{ ...itemsPerPageOptions[0], value: 10 }];
+
+      component.ngOnInit();
+
+      expect(component.numberOfPage).toEqual(expectedNumberOfPages);
+    });
   });
 });
+

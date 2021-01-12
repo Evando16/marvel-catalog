@@ -9,10 +9,12 @@ import { Paginator } from './../../shared/component/paginator/paginator.model';
   selector: 'app-comic-list',
   template: `
   <section class="comic-list">
-    <app-paginator (paginatorChange)="onChangePage($event)"
-      [itemsPerPageOptions]="comicService.paginatorOptions"
-      [total]="comicService.totalComics"></app-paginator>
-    <div class="comic-list__card-container">
+    <div class="comic-list__paginator-wrapper">
+      <app-paginator class="comic-list__paginator" (paginatorChange)="onChangePage($event)"
+        [itemsPerPageOptions]="comicService.paginatorOptions"
+        [total]="comicService.totalComics"></app-paginator>
+    </div>
+    <div class="comic-list__card-container mt-16">
       <app-card class="comic-list__card"
         *ngFor="let card of comicService.comicCards"
         [card]="card" (click)="goToComicDetails(card.id)"></app-card>
