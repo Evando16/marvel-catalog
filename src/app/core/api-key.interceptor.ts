@@ -23,6 +23,12 @@ export class ApiKeyInterceptor implements HttpInterceptor {
     private readonly footerService: FooterService,
   ) { }
 
+  /**
+   * - If the request is to https://gateway.marvel.com/v1/public it will add the API Key param
+   * - Start and finish the loading to give a feedback to the user
+   * @param req The outgoing request object to handle.
+   * @param next The next interceptor in the chain, or the backend
+   */
   public intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.loadingService.startLoading();
     if (request.url.includes(MARVEL_BASE_API_ROUTE)) {

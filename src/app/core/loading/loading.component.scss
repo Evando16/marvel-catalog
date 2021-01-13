@@ -6,6 +6,7 @@
   height: 100%;
   display: flex;
   place-content: center center;
+  z-index: 999;
 
   &__spinner {
     font-size: 250px;

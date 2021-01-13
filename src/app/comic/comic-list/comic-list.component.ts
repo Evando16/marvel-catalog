@@ -34,9 +34,13 @@ export class ComicListComponent implements OnInit {
     this.comicService.requestComics(0, +PAGINATOR_OPTIONS[0].value);
   }
 
-  public onChangePage(action: Paginator): void {
-    const offset = action.itemsPerPage * (action.page - 1);
-    this.comicService.requestComics(offset, action.itemsPerPage);
+  /**
+   * When the paginator component change request the data again using new paginator values
+   * @param paginator new paginator values
+   */
+  public onChangePage(paginator: Paginator): void {
+    const offset = paginator.itemsPerPage * (paginator.page - 1);
+    this.comicService.requestComics(offset, paginator.itemsPerPage);
   }
 
   public goToComicDetails(id: number): void {
